@@ -5,7 +5,7 @@ Simple Docker deployment of electrumx server for BitcoinZ
 * Ubuntu Linux VPS with 80 - 100GB space, 4+ cores, 4-8GB RAM
 * Docker 20.10+ (to allow internal host binding w/ --add-host)
 * Fully synced BitcoinZ Daemon already running w/ example config below ([Daemon Binaries](https://github.com/btcz/bitcoinz/releases))
-* Allow ports 50001, 50002 through Firewall
+* Allow ports TCP 50001, 50002 through Firewall
 * Some brains
 
 ### BitcoinZ Example Config
@@ -39,5 +39,5 @@ sudo docker run -d --add-host=host.docker.internal:host-gateway --name btcz-elec
 ```
 
 ### Troubleshooting
-* Make sure you open Firewall ports for ports 50001 and 50002
+* Make sure you open Firewall ports for TCP ports 50001 and 50002
 * You can check logs with `sudo docker logs -f <CONTAINER ID>` (you get ID of container with `sudo docker ps`) 

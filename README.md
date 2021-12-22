@@ -30,12 +30,14 @@ rpcallowip=172.17.0.3
 ```
 
 ### How To Step by Step
+
+* You'll need your hosts IP address to replace `<YOUR HOST IP>` in the LAST TWO lines in command list below.
 ```
 git clone https://github.com/btcz-electrum/electrumx-docker.git
 cd electrumx-docker
 sudo docker build -t electrumv1 .;
-sudo docker run -d --add-host=host.docker.internal:host-gateway --name btcz-elec1 -p 50002:50002 -e DAEMON_URL=http://bitcoinzrpc:bitcoinz9jk01Amn3Z@host.docker.internal:1979 -e COIN=BitcoinZ -it electrumv1;
-sudo docker run -d --add-host=host.docker.internal:host-gateway --name btcz-elec2 -p 50001:50001 -e DAEMON_URL=http://bitcoinzrpc:bitcoinz9jk01Amn3Z@host.docker.internal:1979 -e COIN=BitcoinZ -it electrumv1;
+sudo docker run -d --add-host=host.docker.internal:host-gateway --name btcz-elec1 -p 50001:50001 -e DAEMON_URL=http://bitcoinzrpc:bitcoinz9jk01Amn3Z@host.docker.internal:1979 -e COIN=BitcoinZ -e REPORT_SERVICES=tcp://<YOUR HOST IP>:50001,ssl://<YOUR HOST IP>:50002,wss://<YOUR HOST IP>:50004 -it electrumv1;
+sudo docker run -d --add-host=host.docker.internal:host-gateway --name btcz-elec2 -p 50002:50002 -e DAEMON_URL=http://bitcoinzrpc:bitcoinz9jk01Amn3Z@host.docker.internal:1979 -e COIN=BitcoinZ -e REPORT_SERVICES=tcp://<YOUR HOST IP>:50001,ssl://<YOUR HOST IP>:50002,wss://<YOUR HOST IP>:50004 -it electrumv1;
 ```
 
 ### Troubleshooting

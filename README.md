@@ -2,7 +2,8 @@
 Simple Docker deployment of electrumx server for BitcoinZ
 
 ## Prerequisites
-* Ubuntu Linux VPS with 80 - 100GB space, 4+ cores, 4-8GB RAM
+* Ubuntu Linux VPS (not OpenVZ if RAM is 4GB or less) with 80 - 100GB space, 4+ cores
+* 4-8GB RAM (if 4GB RAM, create 4GB swap space)
 * Docker 20.10+ (to allow internal host binding w/ --add-host)
 * Fully synced BitcoinZ Daemon already running w/ example config below ([Daemon Binaries](https://github.com/btcz/bitcoinz/releases))
 * Allow ports TCP 50001, 50002 through Firewall
@@ -41,4 +42,5 @@ sudo docker run -d --add-host=host.docker.internal:host-gateway --name btcz-elec
 
 ### Troubleshooting
 * Make sure you open Firewall ports for TCP ports 50001 and 50002
-* You can check logs with `sudo docker logs -f <CONTAINER ID>` (you get ID of container with `sudo docker ps`) 
+* You can check logs with `sudo docker logs -f <CONTAINER ID>` (you get ID of container with `sudo docker ps`)
+* If you're running to issues with the daemon crashing, you can try adding swap space (search Google).  If you're using an OpenVZ VPS (instead of KVM for example), you won't be able to add swap space.  So if you're using an OpenVZ VPS you might need to have at least 8GB of RAM. 

@@ -4,4 +4,6 @@ if [ ! -e "${SSL_CERTFILE}" ] || [ ! -e "${SSL_KEYFILE}" ]; then
   openssl req -newkey rsa:2048 -sha256 -nodes -x509 -days 1095 -subj "/O=ElectrumX" -keyout "${SSL_KEYFILE}" -out "${SSL_CERTFILE}"
 fi
 
-exec /electrumx-btcz/electrumx_server
+/electrumx-btcz/electrumx_compact_history &&
+/electrumx-btcz/electrumx_server &&
+exit 1;
